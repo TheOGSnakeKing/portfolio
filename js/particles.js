@@ -74,12 +74,13 @@ class ParticleSystem {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     
-    const fontSize = Math.min(this.width * 0.08, 120);
+    const fontSize = Math.min(this.width * 0.07, 100);
     canvas.width = this.width;
     canvas.height = this.height;
     
     ctx.fillStyle = '#ffffff';
-    ctx.font = `bold ${fontSize}px 'Sora', sans-serif`;
+    // Use system fonts as fallback to ensure text renders
+    ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
@@ -102,6 +103,20 @@ class ParticleSystem {
           const nx = (x / canvas.width - 0.5) * 2 * (this.width / this.height);
           const ny = (0.5 - y / canvas.height) * 2;
           this.textPositions.push(new THREE.Vector3(nx, ny, 0));
+        }
+      }
+    }
+    
+    // Fallback: if no text positions found, create a grid pattern
+    if (this.textPositions.length < 100) {
+      console.warn('Text rendering failed, using fallback pattern');
+      this.textPositions = [];
+      const gridSize = 50;
+      for (let i = 0; i < gridSize; i++) {
+        for (let j = 0; j < gridSize; j++) {
+          const x = (i / gridSize - 0.5) * 3;
+          const y = (j / gridSize - 0.5) * 1;
+          this.textPositions.push(new THREE.Vector3(x, y, 0));
         }
       }
     }
@@ -438,11 +453,12 @@ function initParticles() {
   }
 }
 
-// Wait for Three.js to load
+// Wait for everything to load including fonts
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(initParticles, 100);
+    // Give fonts time to load
+    setTimeout(initParticles, 500);
   });
 } else {
-  setTimeout(initParticles, 100);
+  setTimeout(initParticles, 500);
 }
