@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Nagaraj Raparthi | Graphics Engineer & AI Engineer</title>
+  <meta name="description" content="Graphics engineer and AI engineer with Hollywood VFX credits and SIGGRAPH publications. Currently building enterprise AI systems at MinIO.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nagaraj Raparthi | Graphics Engineer & AI Engineer">
+  <meta property="og:description" content="From Hollywood VFX to enterprise AI. Building intelligent systems at the intersection of visual computing and artificial intelligence.">
+  <meta property="og:image" content="https://nagarajraparthi.com/assets/images/og-image.png">
+  <meta property="og:url" content="https://nagarajraparthi.com">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nagaraj Raparthi | Graphics Engineer & AI Engineer">
+  <meta name="twitter:description" content="From Hollywood VFX to enterprise AI.">
+  <meta name="twitter:image" content="https://nagarajraparthi.com/assets/images/og-image.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  
+  <!-- Canonical -->
+  <link rel="canonical" href="https://nagarajraparthi.com">
+  
+  <!-- Preconnect to external resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Fonts - Distinctive choices -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  
+  <!-- Critical inline styles for above-the-fold -->
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#0a0a0f;color:#fff;font-family:'Sora',sans-serif;overflow-x:hidden}
+    .hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center}
+    #hero-canvas{position:absolute;inset:0;z-index:1}
+    .hero-content{position:relative;z-index:2;text-align:center;pointer-events:none}
+    .hero-content > *{pointer-events:auto}
+    .loading{position:fixed;inset:0;background:#0a0a0f;z-index:9999;display:flex;align-items:center;justify-content:center}
+    .loading-text{font-family:'JetBrains Mono',monospace;color:#00d4ff;font-size:1rem}
+    .loading.hidden{opacity:0;pointer-events:none;transition:opacity 0.5s ease}
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading" id="loader">
+    <span class="loading-text">Initializing particles<span class="dots">...</span></span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">NR</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#now">Now</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#hollywood">Hollywood</a></li>
+        <li><a href="#toolkit">Toolkit</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Section 1: Hero -->
+  <section class="hero" id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <p class="hero-subtitle">Graphics Engineer • AI Engineer</p>
+      <p class="hero-description">
+        Building intelligent systems at the intersection<br>
+        of visual computing and artificial intelligence
+      </p>
+      <div class="hero-social">
+        <a href="https://www.linkedin.com/in/nagaraj-raparthi-2031a7144/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://github.com/TheOGSnakeKing" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://nagarajraparthi.artstation.com/" target="_blank" rel="noopener" class="social-link" aria-label="ArtStation">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 002.164 1.333h13.457l-2.792-4.838H0zm24-2.188a2.377 2.377 0 00-.354-1.255L14.764 0h-4.058l8.381 14.535h4.913v.001zm-9.869 2.187H4.299L12.65 0l4.088 7.078-2.607 4.644-4.088 7.001z"/></svg>
+        </a>
+        <a href="https://www.imdb.com/name/nm9430735/" target="_blank" rel="noopener" class="social-link" aria-label="IMDB">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.31 9.588v.005c-.077-.048-.227-.07-.42-.07v4.815c.27 0 .44-.06.5-.165.062-.104.095-.405.095-.9v-2.65c0-.4-.02-.67-.058-.8-.04-.13-.118-.198-.235-.198l.12-.037zm-6.194 4.752h1.302V9.658h-1.86l-.625 3.053-.625-3.053H4.494v4.682h1.187v-3.317l.743 3.317h1.045l.747-3.317v3.317zm7.125-4.682h-1.99v4.682h1.937c.527 0 .885-.082 1.072-.245.187-.163.28-.477.28-.94V11.2c0-.5-.097-.853-.29-1.053-.194-.2-.534-.3-1.023-.3l.014.011zm4.56 2.333V11.1c0-.398-.073-.667-.22-.805-.145-.138-.405-.206-.78-.206-.248 0-.448.044-.603.13a.746.746 0 00-.3.406v3.165a.573.573 0 00.275.377c.14.08.313.12.528.12.393 0 .652-.09.775-.27.124-.18.186-.52.186-1.01v-.01h.14-.01zm.938-.148c0 .63-.068 1.09-.206 1.376-.136.286-.4.496-.787.63-.388.134-.883.2-1.484.2-.535 0-.967-.03-1.293-.09-.325-.06-.592-.176-.8-.35-.205-.173-.345-.388-.42-.65a4.27 4.27 0 01-.106-1.04V9.66h1.638v3.06c0 .298.013.498.04.6.025.102.063.17.114.206.05.036.115.054.196.054.126 0 .213-.044.26-.134.046-.09.07-.27.07-.54V9.66h1.637v2.883h-.002zm5.39 2.44h-2.09v-.496a1.397 1.397 0 01-.472.424c-.18.093-.39.14-.63.14-.206 0-.396-.04-.567-.114-.172-.076-.295-.2-.37-.37a1.4 1.4 0 01-.105-.545v-3.12h1.63v2.688c0 .15.017.254.053.31.036.057.1.085.188.085.093 0 .166-.03.22-.09.053-.06.08-.152.08-.275V9.658h1.63v4.682h.433v-.005zM24 18.857c0 1.236-1.003 2.238-2.24 2.238H2.24C1.003 21.095 0 20.093 0 18.857V5.143C0 3.907 1.003 2.905 2.24 2.905h19.52C22.997 2.905 24 3.907 24 5.143v13.714z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Section 2: Now -->
+  <section class="section now" id="now">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-label">Now</span>
+      </h2>
+      
+      <div class="now-header">
+        <div class="now-role">
+          <h3>Software Engineer <span class="accent">@</span> MinIO</h3>
+          <span class="now-date">November 2024 – Present</span>
+        </div>
+        <p class="now-intro">
+          Building enterprise-grade AI systems that bridge visual computing with intelligent automation.
+        </p>
+      </div>
+
+      <div class="now-grid">
+        <div class="now-card" data-aos="fade-up">
+          <div class="now-card-icon">🤖</div>
+          <h4>Agentic AI Platform</h4>
+          <p>Architected multi-agent orchestration system (planner, coder, summarizer) enabling intelligent report generation and complex query processing at scale.</p>
+        </div>
+        
+        <div class="now-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="now-card-icon">🎨</div>
+          <h4>Visual AI Pipeline</h4>
+          <p>Built AI-driven content generation processing structured and unstructured data—leveraging vision-language models for automated image synthesis, comic generation, and video composition.</p>
+        </div>
+        
+        <div class="now-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="now-card-icon">⚡</div>
+          <h4>Full-Stack Systems</h4>
+          <p>Go backend (gRPC/REST), Python AI workers with event-driven processing, React frontend with real-time visualization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Research / Motion Matching Demo -->
+  <section class="section research" id="research">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-label">Research in Action</span>
+      </h2>
+      
+      <div class="research-demo">
+        <div class="demo-canvas-wrapper">
+          <canvas id="motion-canvas"></canvas>
+          <div class="demo-hint">
+            <span class="hint-icon">👆</span>
+            Move your cursor to guide the character
+          </div>
+          <div class="demo-stats">
+            <div class="stat">
+              <span class="stat-label">State</span>
+              <span class="stat-value" id="anim-state">IDLE</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Velocity</span>
+              <span class="stat-value" id="velocity">0.0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="research-info">
+          <div class="paper-badge">SIGGRAPH Asia 2020</div>
+          <h3>GPU-Based Motion Matching for Crowds in Unreal Engine</h3>
+          <p>
+            Traditional motion matching is CPU-bound. My research achieved <strong>95% reduction</strong> in computation time by parallelizing frame-by-frame calculations on GPU, enabling real-time animation of <strong>hundreds of characters</strong> simultaneously.
+          </p>
+          <div class="research-links">
+            <a href="https://dl.acm.org/doi/10.1145/3415264.3425474" target="_blank" rel="noopener" class="btn btn-primary">
+              <span>View Paper</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+            <a href="https://youtu.be/wxVn4YX8sjw" target="_blank" rel="noopener" class="btn btn-secondary">
+              <span>Watch Demo</span>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Journey Timeline -->
+  <section class="section journey" id="journey">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-label">The Journey</span>
+      </h2>
+      <p class="section-subtitle">From crafting Hollywood blockbusters to engineering AI systems</p>
+      
+      <div class="timeline">
+        <div class="timeline-item" data-type="ai">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <span class="timeline-year">2024</span>
+              <span class="timeline-range">– Present</span>
+            </div>
+            <h4 class="timeline-company">MinIO</h4>
+            <p class="timeline-role">Software Engineer</p>
+            <ul class="timeline-highlights">
+              <li>AI-driven visual content generation pipeline</li>
+              <li>Enterprise agentic AI platform</li>
+              <li>Full-stack: Go, Python, React</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-type="graphics">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <span class="timeline-year">2022</span>
+              <span class="timeline-range">– 2024</span>
+            </div>
+            <h4 class="timeline-company">Apira Technologies</h4>
+            <p class="timeline-role">Unreal Engineer</p>
+            <ul class="timeline-highlights">
+              <li>Real-time metaverse avatar rendering</li>
+              <li>2x frame rate improvement</li>
+              <li>Artist-friendly tool development</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-type="graphics">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <span class="timeline-year">2020</span>
+              <span class="timeline-range">– 2022</span>
+            </div>
+            <h4 class="timeline-company">Val G. Hemming Simulation Center</h4>
+            <p class="timeline-role">Graphics Engineer</p>
+            <ul class="timeline-highlights">
+              <li>SIGGRAPH Asia 2020 publication</li>
+              <li>95% compute time reduction</li>
+              <li>W.A.V.E projector alignment system</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-type="education">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <span class="timeline-year">2018</span>
+              <span class="timeline-range">– 2020</span>
+            </div>
+            <h4 class="timeline-company">Texas A&M University</h4>
+            <p class="timeline-role">MS Computer Graphics</p>
+            <ul class="timeline-highlights">
+              <li>GPU optimization research</li>
+              <li>Motion matching thesis</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-type="film">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <span class="timeline-year">2016</span>
+              <span class="timeline-range">– 2018</span>
+            </div>
+            <h4 class="timeline-company">MPC (Moving Picture Company)</h4>
+            <p class="timeline-role">3D Modeling Artist</p>
+            <ul class="timeline-highlights">
+              <li>Justice League, Ghost in Shell</li>
+              <li>Detective Pikachu, Ad Astra</li>
+              <li>The Predator, + more</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Hollywood Credits -->
+  <section class="section hollywood" id="hollywood">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-label">Hollywood</span>
+      </h2>
+      <p class="section-subtitle">Before code, there was clay. 7 major film credits at MPC.</p>
+      
+      <div class="films-grid">
+        <article class="film-card" data-film="justice-league">
+          <div class="film-poster">
+            <div class="film-poster-placeholder">
+              <span class="film-icon">🦸</span>
+            </div>
+            <div class="film-overlay">
+              <p class="film-contribution">Modeled motherboxes platform, climax scene structures, Steppenwolf's helmet, buildings, concept art for alien gunk</p>
+            </div>
+          </div>
+          <div class="film-info">
+            <h4>Justice League</h4>
+            <span class="film-year">2017</span>
+          </div>
+        </article>
+
+        <article class="film-card" data-film="ghost-shell">
+          <div class="film-poster">
+            <div class="film-poster-placeholder">
+              <span class="film-icon">🤖</span>
+            </div>
+            <div class="film-overlay">
+              <p class="film-contribution">Destroyed geisha suit, vehicles, optimized 100+ actor scans for holographic displays</p>
+            </div>
+          </div>
+          <div class="film-info">
+            <h4>Ghost in the Shell</h4>
+            <span class="film-year">2017</span>
+          </div>
+        </article>
+
+        <article class="film-card" data-film="pikachu">
+          <div class="film-poster">
+            <div class="film-poster-placeholder">
+              <span class="film-icon">⚡</span>
+            </div>
+            <div class="film-overlay">
+              <p class="film-contribution">Sole modeler for the cheese-grater building</p>
+            </div>
+          </div>
+          <div class="film-info">
+            <h4>Detective Pikachu</h4>
+            <span class="film-year">2019</span>
+          </div>
+        </article>
+
+        <article class="film-card" data-film="ad-astra">
+          <div class="film-poster">
+            <div class="film-poster-placeholder">
+              <span class="film-icon">🚀</span>
+            </div>
+            <div class="film-overlay">
+              <p class="film-contribution">Three spaceships (lead on one), helmets, space suit</p>
+            </div>
+          </div>
+          <div class="film-info">
+            <h4>Ad Astra</h4>
+            <span class="film-year">2019</span>
+          </div>
+        </article>
+
+        <article class="film-card" data-film="predator">
+          <div class="film-poster">
+            <div class="film-poster-placeholder">
+              <span class="film-icon">👽</span>
+            </div>
+            <div class="film-overlay">
+              <p class="film-contribution">Alpha predator (normal and armored modes), maintained blend shapes topology, acting lead</p>
+            </div>
+          </div>
+          <div class="film-info">
+            <h4>The Predator</h4>
+            <span class="film-year">2018</span>
+          </div>
+        </article>
+
+        <article class="film-card" data-film="orient-express">
+          <div class="film-poster">
+            <div class="film-poster-placeholder">
+              <span class="film-icon">🚂</span>
+            </div>
+            <div class="film-overlay">
+              <p class="film-contribution">One of three modelers for the entire train</p>
+            </div>
+          </div>
+          <div class="film-info">
+            <h4>Murder on the Orient Express</h4>
+            <span class="film-year">2017</span>
+          </div>
+        </article>
+
+        <article class="film-card" data-film="maleficent">
+          <div class="film-poster">
+            <div class="film-poster-placeholder">
+              <span class="film-icon">🧚</span>
+            </div>
+            <div class="film-overlay">
+              <p class="film-contribution">Aurora's crown and various assets</p>
+            </div>
+          </div>
+          <div class="film-info">
+            <h4>Maleficent: Mistress of Evil</h4>
+            <span class="film-year">2019</span>
+          </div>
+        </article>
+      </div>
+      
+      <div class="hollywood-cta">
+        <a href="https://www.imdb.com/name/nm9430735/" target="_blank" rel="noopener" class="imdb-link">
+          View on IMDB
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Toolkit -->
+  <section class="section toolkit" id="toolkit">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-label">Toolkit</span>
+      </h2>
+      
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4 class="skill-category-title">Languages</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Go</span>
+            <span class="skill-tag">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 class="skill-category-title">Graphics</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">OpenGL</span>
+            <span class="skill-tag">Unreal Engine</span>
+            <span class="skill-tag">Unity</span>
+            <span class="skill-tag">Shader Dev</span>
+            <span class="skill-tag">Compute Shaders</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 class="skill-category-title">AI / ML</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Vision-Language Models</span>
+            <span class="skill-tag">Agentic AI</span>
+            <span class="skill-tag">Multi-Agent Orchestration</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 class="skill-category-title">Web</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">gRPC</span>
+            <span class="skill-tag">REST</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 class="skill-category-title">DCC Tools</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Maya</span>
+            <span class="skill-tag">ZBrush</span>
+            <span class="skill-tag">3DS Max</span>
+            <span class="skill-tag">Houdini</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 class="skill-category-title">DevOps</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Perforce</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Contact -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-label">Let's Connect</span>
+      </h2>
+      
+      <div class="contact-content">
+        <p class="contact-intro">
+          Whether you're building the next generation of visual AI or need someone who speaks both artist and engineer—I'd love to chat.
+        </p>
+        
+        <div class="contact-methods">
+          <a href="mailto:nagarajraparthi31@gmail.com" class="contact-method">
+            <span class="contact-icon">📧</span>
+            <span class="contact-value">nagarajraparthi31@gmail.com</span>
+          </a>
+          <a href="tel:+16822769799" class="contact-method">
+            <span class="contact-icon">📱</span>
+            <span class="contact-value">1-682-276-9799</span>
+          </a>
+        </div>
+        
+        <div class="contact-social">
+          <a href="https://www.linkedin.com/in/nagaraj-raparthi-2031a7144/" target="_blank" rel="noopener" class="contact-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/TheOGSnakeKing" target="_blank" rel="noopener" class="contact-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://nagarajraparthi.artstation.com/" target="_blank" rel="noopener" class="contact-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 002.164 1.333h13.457l-2.792-4.838H0zm24-2.188a2.377 2.377 0 00-.354-1.255L14.764 0h-4.058l8.381 14.535h4.913v.001zm-9.869 2.187H4.299L12.65 0l4.088 7.078-2.607 4.644-4.088 7.001z"/></svg>
+            <span>ArtStation</span>
+          </a>
+          <a href="https://www.imdb.com/name/nm9430735/" target="_blank" rel="noopener" class="contact-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.31 9.588v.005c-.077-.048-.227-.07-.42-.07v4.815c.27 0 .44-.06.5-.165.062-.104.095-.405.095-.9v-2.65c0-.4-.02-.67-.058-.8-.04-.13-.118-.198-.235-.198l.12-.037zm-6.194 4.752h1.302V9.658h-1.86l-.625 3.053-.625-3.053H4.494v4.682h1.187v-3.317l.743 3.317h1.045l.747-3.317v3.317zm7.125-4.682h-1.99v4.682h1.937c.527 0 .885-.082 1.072-.245.187-.163.28-.477.28-.94V11.2c0-.5-.097-.853-.29-1.053-.194-.2-.534-.3-1.023-.3l.014.011zm4.56 2.333V11.1c0-.398-.073-.667-.22-.805-.145-.138-.405-.206-.78-.206-.248 0-.448.044-.603.13a.746.746 0 00-.3.406v3.165a.573.573 0 00.275.377c.14.08.313.12.528.12.393 0 .652-.09.775-.27.124-.18.186-.52.186-1.01v-.01h.14-.01zm.938-.148c0 .63-.068 1.09-.206 1.376-.136.286-.4.496-.787.63-.388.134-.883.2-1.484.2-.535 0-.967-.03-1.293-.09-.325-.06-.592-.176-.8-.35-.205-.173-.345-.388-.42-.65a4.27 4.27 0 01-.106-1.04V9.66h1.638v3.06c0 .298.013.498.04.6.025.102.063.17.114.206.05.036.115.054.196.054.126 0 .213-.044.26-.134.046-.09.07-.27.07-.54V9.66h1.637v2.883h-.002zm5.39 2.44h-2.09v-.496a1.397 1.397 0 01-.472.424c-.18.093-.39.14-.63.14-.206 0-.396-.04-.567-.114-.172-.076-.295-.2-.37-.37a1.4 1.4 0 01-.105-.545v-3.12h1.63v2.688c0 .15.017.254.053.31.036.057.1.085.188.085.093 0 .166-.03.22-.09.053-.06.08-.152.08-.275V9.658h1.63v4.682h.433v-.005zM24 18.857c0 1.236-1.003 2.238-2.24 2.238H2.24C1.003 21.095 0 20.093 0 18.857V5.143C0 3.907 1.003 2.905 2.24 2.905h19.52C22.997 2.905 24 3.907 24 5.143v13.714z"/></svg>
+            <span>IMDB</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="copyright" id="copyright">© 2025 Nagaraj Raparthi</p>
+    </div>
+  </footer>
+
+  <!-- Easter Egg Game Container -->
+  <div class="game-container" id="game-container">
+    <div class="game-header">
+      <h3>🎮 Debug Runner</h3>
+      <div class="game-score">Score: <span id="game-score">0</span></div>
+      <button class="game-close" id="game-close">ESC</button>
+    </div>
+    <canvas id="game-canvas" width="800" height="400"></canvas>
+    <div class="game-overlay" id="game-overlay">
+      <p class="game-start-text">Press SPACE to start</p>
+      <p class="game-controls">SPACE = Jump | ESC = Exit</p>
+    </div>
+    <div class="game-over-overlay" id="game-over">
+      <h4>Game Over!</h4>
+      <p>Score: <span id="final-score">0</span></p>
+      <p>High Score: <span id="high-score">0</span></p>
+      <button class="game-restart" id="game-restart">Play Again</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/motion-matching.js"></script>
+  <script src="js/easter-egg.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
